@@ -98,3 +98,30 @@ var createTaskEl = function(taskDataObj) {
 };
 
 formEl.addEventListener("submit", taskFormHandler);
+
+var pageContentEl = document.querySelector("#page-content");
+
+function taskButtonHandler(event) {
+  var taskId = event.target.getAttribute("data-task-id");
+//each button function
+function deleteTask(taskId){
+  var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
+  taskSelected.remove();
+};
+function editTask(taskId) {
+  var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
+  console.log("You want to edit data-task-Id" + taskId);
+
+}
+
+if (event.target.matches(".delete-btn")) {
+  deleteTask(taskId);
+}
+else if (event.target.matches(".edit-btn")){
+  editTask(taskId);
+}
+
+
+}
+
+pageContentEl.addEventListener("click", taskButtonHandler);
